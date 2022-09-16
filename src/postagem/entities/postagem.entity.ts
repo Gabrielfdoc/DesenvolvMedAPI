@@ -55,9 +55,9 @@ export class Postagem {
     @ManyToOne(() => Medico, (medico) => medico.postagens, {
         onDelete: "CASCADE"
     })
-    @ApiProperty(@ApiProperty({
+    @ApiProperty({
         description: 'Precisa de ser o id de um médico existente no banco de dados'
-    }))
+    })
     medico: Medico
 
     @OneToMany(() => Comentario, (comentarioReferencia) => comentarioReferencia.postagem)
