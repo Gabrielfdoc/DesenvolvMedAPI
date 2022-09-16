@@ -6,7 +6,7 @@ import { Paciente } from "../../paciente/entities/paciente.entity";
 import { Medico } from "../../medico/entities/medico.entity";
 import { CadastroTemporarioMedicoDTO } from "../model/cadastrotemporariomedicodto";
 import { CadastroTemporarioPacienteDTO } from "../model/cadastrotemporariopacientedto";
-import { ApiBadRequestResponse, ApiCreatedResponse, ApiForbiddenResponse, ApiNoContentResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
+import { ApiBadRequestResponse, ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiNoContentResponse, ApiNotFoundResponse, ApiOkResponse, ApiParam, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 
 @ApiTags('Cadastro')
 @Controller('/cadastro')
@@ -16,7 +16,12 @@ export class CadastroController {
         private readonly service: CadastroService
     ) { }
 
-    @ApiCreatedResponse({ description: 'Created Succesfully' })
+    @ApiBody({
+        required: true,
+        description: 'Deve conter todos os dados requisitados no CadastroTemporarioMedicoDTO',
+        type: CadastroTemporarioMedicoDTO
+      })
+    @ApiCreatedResponse({ description: 'Criado com sucesso!' })
     @ApiUnprocessableEntityResponse({ description: 'Unprocessable Entity' })
     @ApiBadRequestResponse({ description: 'Bad Request' })
     @Post('/medico')
@@ -25,7 +30,12 @@ export class CadastroController {
         return this.service.createMedico(cadastroTemporarioMedicoDTO)
     }
 
-    @ApiCreatedResponse({ description: 'Created Succesfully' })
+    @ApiBody({
+        required: true,
+        description: 'Deve conter todos os dados requisitados no CadastroTemporarioPacienteDTO',
+        type: CadastroTemporarioPacienteDTO
+      })
+    @ApiCreatedResponse({ description: 'Criado com sucesso!' })
     @ApiBadRequestResponse({ description: 'Bad Request' })
     @ApiUnprocessableEntityResponse({ description: 'Unprocessable Entity' })
     @Post('/paciente')
@@ -34,23 +44,34 @@ export class CadastroController {
         return this.service.createPaciente(cadastroTemporarioPacienteDTO)
     }
 
-    @ApiOkResponse({ description: 'The resource was returned successfully' })
-    @ApiNoContentResponse({ description: 'Content not found' })
+    @ApiParam({
+        name: 'id',
+        required: true,
+        description: 'Tem de ser o ID de um cadastro existente no banco de dados!',
+        type: Number
+      })
+    @ApiNotFoundResponse({ description: 'Recurso não encontrado!' })
+    @ApiNoContentResponse({ description: 'O recurso foi deletado com sucesso!' })
     @Delete('/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     delete(@Param('id', ParseIntPipe) id: number): Promise<DeleteResult> {
         return this.service.delete(id)
     }
 
-    @ApiOkResponse({ description: 'The resources were returned successfully' })
+    @ApiOkResponse({ description: 'Os recursos foram retornados com sucesso!' })
     @Get()
     @HttpCode(HttpStatus.OK)
     findAll(): Promise<Cadastro[]> {
         return this.service.findAll()
     }
 
-    @ApiOkResponse({ description: 'The resource was updated successfully' })
-    @ApiNotFoundResponse({ description: 'Resource not found' })
+    @ApiBody({
+        required: true,
+        description: 'Deve conter todos os dados requisitados no CadastroTemporarioMedicoDTO e não é possível alterar o CRM',
+        type: CadastroTemporarioMedicoDTO
+      })
+    @ApiOkResponse({ description: 'O recurso foi atualizado com sucesso!' })
+    @ApiNotFoundResponse({ description: 'Recurso não encontrado!' })
     @ApiBadRequestResponse({ description: 'Bad Request' })
     @ApiUnprocessableEntityResponse({ description: 'Unprocessable Entity' })
     @Put('/medico')
@@ -59,8 +80,13 @@ export class CadastroController {
         return this.service.updateMedico(cadastroTemporarioMedicoDTO)
     }
 
-    @ApiOkResponse({ description: 'The resource was updated successfully' })
-    @ApiNotFoundResponse({ description: 'Resource not found' })
+    @ApiBody({
+        required: true,
+        description: 'Deve conter todos os dados requisitados no CadastroTemporarioPacienteDTO',
+        type: CadastroTemporarioPacienteDTO
+      })
+    @ApiOkResponse({ description: 'O recurso foi atualizado com sucesso!' })
+    @ApiNotFoundResponse({ description: 'Recurso não encontrado!' })
     @ApiBadRequestResponse({ description: 'Bad Request' })
     @ApiUnprocessableEntityResponse({ description: 'Unprocessable Entity' })
     @Put('/paciente')

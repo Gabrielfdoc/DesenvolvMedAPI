@@ -11,7 +11,9 @@ export class Medico {
     @PrimaryGeneratedColumn()
     id: number
 
-    @ApiProperty()
+    @ApiProperty({
+        description: 'Precisa de conter exatamente 13 caracteres'
+    })
     @IsNotEmpty()
     @Length(13)
     @Column({ nullable: false, unique: true, length: 13 })

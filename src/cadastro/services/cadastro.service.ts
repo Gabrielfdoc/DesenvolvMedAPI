@@ -139,7 +139,7 @@ export class CadastroService {
         let cadastroDeletar = this.findById(id)
 
         if (!cadastroDeletar) {
-            throw new HttpException('Cadastro não encontrado!', HttpStatus.NO_CONTENT)
+            throw new HttpException('Cadastro não encontrado!', HttpStatus.NOT_FOUND)
         }
 
         return this.cadastroRepository.delete(id)

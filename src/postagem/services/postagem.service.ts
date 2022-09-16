@@ -56,7 +56,7 @@ export class PostagemService {
     async create(postagem: Postagem): Promise<Postagem> {
 
         if (!postagem.descricao || !postagem.titulo)
-            throw new HttpException('Postagem inválida!', HttpStatus.NOT_ACCEPTABLE)
+            throw new HttpException('Postagem inválida!', HttpStatus.BAD_REQUEST)
 
         return this.postagemRepository.save(postagem)
     }

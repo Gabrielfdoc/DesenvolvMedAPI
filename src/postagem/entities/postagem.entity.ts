@@ -12,21 +12,27 @@ export class Postagem {
     @PrimaryGeneratedColumn()
     id: number
 
-    @ApiProperty()
+    @ApiProperty({
+        description: 'Pode conter no máximo 500 caracteres'
+    })
     @IsNotEmpty()
     @MaxLength(255)
     @MinLength(20)
     @Column({ nullable: false, length: 255 })
     titulo: string
 
-    @ApiProperty()
+    @ApiProperty({
+        description: 'Pode conter entre 20 e 5000 caracteres'
+    })
     @IsNotEmpty()
     @MaxLength(5000)
     @MinLength(20)
     @Column({ nullable: false, length: 5000 })
     descricao: string
 
-    @ApiProperty()
+    @ApiProperty({
+        description: 'Pode conter entre 10 e 500 caracteres, porém é opcional'
+    })
     @IsNotEmpty()
     @MaxLength(500)
     @MinLength(10)

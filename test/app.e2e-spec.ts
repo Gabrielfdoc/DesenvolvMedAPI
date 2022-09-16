@@ -314,7 +314,7 @@ describe('Testando requisições da API utilizada no app DesenvolvMED', () => {
 
     return request(app.getHttpServer())
       .delete(`/postagem/${postagemId}`)
-      .expect(200)
+      .expect(204)
   })
 
   it('24 - Deverá deletar um tema', async () => {

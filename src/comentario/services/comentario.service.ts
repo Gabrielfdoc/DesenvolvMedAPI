@@ -19,7 +19,7 @@ export class ComentarioService {
     async create(comentario: Comentario): Promise<Comentario> {
 
         if(!comentario.conteudo) {
-            throw new HttpException('Comentário Invalido!', HttpStatus.NOT_ACCEPTABLE)
+            throw new HttpException('Comentário inválido!', HttpStatus.BAD_REQUEST)
         }
 
         return this.comentarioRepository.save(comentario)

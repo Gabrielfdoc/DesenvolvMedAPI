@@ -10,7 +10,9 @@ export class ComentarioDTO {
     @Expose({name: "id"})
     id: number
 
-    @ApiProperty()
+    @ApiProperty({
+        description: 'Precisa de conter entre 10 e 300 caracteres.'
+    })
     @IsNotEmpty()
     @MaxLength(300)
     @MinLength(10)

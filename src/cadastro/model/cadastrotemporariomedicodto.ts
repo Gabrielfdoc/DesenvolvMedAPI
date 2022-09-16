@@ -6,7 +6,9 @@ export class CadastroTemporarioMedicoDTO {
     @ApiProperty()
     id: number
 
-    @ApiProperty()
+    @ApiProperty({
+        description: 'Precisa de ter exatamente 11 números e seguir a expressão regular /^[0-9]+$/'
+    })
     @IsNotEmpty()
     @Length(11)
     cpf: string
@@ -21,17 +23,23 @@ export class CadastroTemporarioMedicoDTO {
     @MaxLength(255)
     sobrenome: string
 
-    @ApiProperty()
+    @ApiProperty({
+        description: 'Precisa de ter no mínimo 4 caracteres e no máximo 255'
+    })
     @IsNotEmpty()
     @MaxLength(255)
     senha: string
 
-    @ApiProperty()
+    @ApiProperty({
+        description: 'Precisa de conter @ e ter no máximo 255 caracteres.'
+    })
     @IsNotEmpty()
     @MaxLength(255)
     email: string
 
-    @ApiProperty()
+    @ApiProperty({
+        description: 'Precisa de conter exatamente 13 caracteres'
+    })
     @Length(13)
     crm: string
 }

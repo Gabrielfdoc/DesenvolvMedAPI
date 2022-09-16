@@ -11,7 +11,9 @@ export class Tema {
     @PrimaryGeneratedColumn()
     id: number
 
-    @ApiProperty()
+    @ApiProperty({
+        description: 'Pode conter no máximo 255 caracteres.'
+    })
     @IsNotEmpty()
     @MaxLength(255)
     @Column({ nullable: false, length: 255 })

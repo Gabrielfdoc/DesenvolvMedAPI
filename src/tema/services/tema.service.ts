@@ -35,6 +35,9 @@ export class TemaService {
     }
 
     async create(tema: Tema): Promise<Tema> {
+        if(!tema)
+            throw new HttpException('Tema inválido!',HttpStatus.BAD_REQUEST)
+
         return this.temaRepository.save(tema)
     }
 
