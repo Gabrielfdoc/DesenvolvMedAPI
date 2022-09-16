@@ -30,9 +30,7 @@ export class Comentario {
     @ManyToOne(() => Postagem, (postagem) => postagem.comentarios, {
         onDelete: "CASCADE"
     })
-    @ApiProperty({
-        description: 'Deverá informar o ID de uma postagem existente'
-    })
+    @ApiProperty({type: () => Postagem})
     postagem: Postagem
 
     @ManyToOne(() => Cadastro, (cadastro) => cadastro.comentarios, {

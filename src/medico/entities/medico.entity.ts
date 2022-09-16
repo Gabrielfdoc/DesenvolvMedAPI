@@ -20,9 +20,7 @@ export class Medico {
     crm: string
 
     @OneToMany(() => Postagem, (postagem) => postagem.medico)
-    @ApiProperty({
-        description: 'Um médico poderá realizar várias postagens'
-    })
+    @ApiProperty({type: () => Postagem})
     postagens: Postagem[]
 
     @OneToOne(() => Cadastro, { onDelete: "CASCADE" })
