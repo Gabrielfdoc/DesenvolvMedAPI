@@ -22,7 +22,6 @@ export class CadastroService {
         private pacienteRepository: Repository<Paciente>
     ) { }
 
-
     async createMedico(cadastroTemporarioMedicoDTO: CadastroTemporarioMedicoDTO): Promise<Medico> {
 
         if (!cadastroTemporarioMedicoDTO.crm || !matches(cadastroTemporarioMedicoDTO.cpf, /^[0-9]+$/)) {
