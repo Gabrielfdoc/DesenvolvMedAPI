@@ -15,7 +15,7 @@ export class MedicoService {
         return this.medicoRepository.find({
             relations: {
                 cadastro: true,
-                postagens: true,
+                postagens: true
             }
         })
     }
@@ -27,7 +27,7 @@ export class MedicoService {
                 id
             }, relations: {
                 cadastro: true,
-                postagens: true,
+                postagens: true
             }
         })
 

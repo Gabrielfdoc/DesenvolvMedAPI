@@ -16,9 +16,9 @@ export class PostagemService {
 
         return this.postagemRepository.find({
             relations: {
-                medico: true,
                 tema: true,
-                comentarios: true
+                comentarios: true,
+                medico: true
             }
         })
     }
@@ -29,9 +29,9 @@ export class PostagemService {
             where: {
                 id
             }, relations: {
-                medico: true,
                 tema: true,
-                comentarios: true
+                comentarios: true,
+                medico: true
             }
         })
 
@@ -47,9 +47,9 @@ export class PostagemService {
             where: {
                 titulo: ILike(`%${titulo}%`)
             }, relations: {
-                medico: true,
                 tema: true,
-                comentarios: true
+                comentarios: true,
+                medico: true
             }
         })
 
