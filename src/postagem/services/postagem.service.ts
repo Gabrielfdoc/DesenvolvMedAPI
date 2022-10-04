@@ -18,7 +18,9 @@ export class PostagemService {
             relations: {
                 tema: true,
                 comentarios: true,
-                medico: true
+                medico: {
+                    cadastro: true
+                }
             }
         })
     }
@@ -31,7 +33,9 @@ export class PostagemService {
             }, relations: {
                 tema: true,
                 comentarios: true,
-                medico: true
+                medico: {
+                    cadastro: true
+                }
             }
         })
 
@@ -49,7 +53,9 @@ export class PostagemService {
             }, relations: {
                 tema: true,
                 comentarios: true,
-                medico: true
+                medico: {
+                    cadastro: true
+                }
             }
         })
 

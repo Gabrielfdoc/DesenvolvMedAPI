@@ -16,7 +16,8 @@ export class MedicoService {
             relations: {
                 cadastro: true,
                 postagens: true
-            }
+            },
+            [cadastro, 'cadastro.nome']
         })
     }
 
